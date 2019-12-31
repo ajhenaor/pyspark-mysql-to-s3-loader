@@ -67,6 +67,27 @@ def uploadDataToS3(kwargs, df):
     return('Success')
 
 def main():
+    '''
+    This script allows for extracting data from a MySQL database and uploading it to AWS S3.
+    To do so, a set parameters should be given as enviroment variables:
+        - exec_date: Date of the execution. This parameter is added as a new column in the data extracted in order use it as a control field
+        - date_to_work: Origin date of data, e.g., you may be running the script on the 2019-12-01, but the data may be originated the 2019-06-01. So,
+                        this date should be specified in order to overwrite data on AWS S3
+        - host: DB host
+        - user: DB user
+        - port: DB port
+        - password: DB password
+        - dbname: DB name
+        - table: table to be loaded
+        - query: query allowing for extracting data
+        - columnTypes: list of columns with their data types
+        - AWS_ACCESS_KEY_ID: AWS access key
+        - AWS_SECRET_ACCESS_KEY: AWS secret access key
+        - bucket_name: S3 bucket name where data is going to be loaded
+        - prefix: S3 Bucket prefix where data is going to be loaded
+
+    '''
+
     os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages mysql:mysql-connector-java:8.0.18,org.apache.hadoop:hadoop-aws:2.7.0 pyspark-shell'
 
     exec_date = os.environ['exec_date']
