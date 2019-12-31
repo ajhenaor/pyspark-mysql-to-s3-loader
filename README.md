@@ -15,8 +15,46 @@ The script expects as environment variables next parameters
 | dbname | DB name|
 | table | DB table to loaded|
 | query | Query to select data from MySQL table |
-| columnTypes | YAML file where data column types are specified |
+| columnTypes | List of data column types |
 | AWS_ACCESS_KEY_ID | AWS role access key |
 | AWS_SECRET_ACCESS_KEY | AWS secret access key|
 | bucket_name | S3 bucket where data is going to be loaded |
 | prefix | S3 Bucket prefix where data is going to be loaded |
+
+
+### Config file
+This is an example of a YAML file from where the columnTypes field is extracted.
+
+```
+columnTypes:
+    - table1:
+        filteredBy : 'datefield'
+        columnTypes:
+          datefield: string
+          field1: string
+          field2: integer
+    - table2:
+        filteredBy : 'date'
+        columnTypes:
+            datefield: string
+            field1: string
+            field2: integer
+    - table3:
+        filteredBy : 'date'
+        columnTypes:
+            datefield: string
+            field1: string
+            field2: integer
+    - table4:
+        filteredBy : 'date'
+        columnTypes:
+            datefield: string
+            field1: string
+            field2: integer
+    - table5:
+        filteredBy : 'date'
+        columnTypes:
+            datefield: string
+            field1: string
+            field2: integer
+```
